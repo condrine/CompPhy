@@ -25,8 +25,6 @@ t0 = 0
 tf = 100
 u = [1.1, -0.1]
 
-# Utility function for textbox
-
 
 # A = 0, alpha = 0
 theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0., 0., 0.)
@@ -41,6 +39,7 @@ plt1.plot(theta_arr, v_arr, linewidth=1, color= blue)
 plt1 = txtbox(plt1, 0., 0., 0.)
 plt1.savefig("Results/partA1_PHSP.png")
 
+
 # A = 0, alpha = 0.1
 theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.1, 0., 0.)
 plt1 = plt_creator(
@@ -54,6 +53,7 @@ plt1.plot(theta_arr, v_arr, linewidth=1, color= blue)
 plt1 = txtbox(plt1, 0.1, 0., 0.)
 plt1.savefig("Results/partA2_PHSP.png")
 
+
 # A = 0, alpha = 0.5
 theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.5, 0., 0.)
 plt1 = plt_creator(
@@ -66,6 +66,7 @@ plt1 = plt_creator(
 plt1.plot(theta_arr, v_arr, linewidth=1, color= blue)
 plt1 = txtbox(plt1, 0.5, 0., 0.)
 plt1.savefig("Results/partA3_PHSP.png")
+
 
 # A = 0, alpha = 1
 theta_arr, v_arr = solver(u, rk4, N, t0, tf, 1., 0., 0.)
