@@ -5,22 +5,22 @@ def euler(xn, yn, h, func):
     return yn + h*func(yn, xn)
 
 # Multistep method
-def multistep(xn, yn, ynn, h, func):
-    return ynn + 2*h*func(yn, xn)
+def multistep(xn, yn, ynn, h, func, *args):
+    return ynn + 2*h*func(yn, xn, *args)
 
 # Trapezoidal Predictor Corrector
-def trapezoidal_pc(xn, yn, h, func):
-    yp = yn + h*func(yn, xn)
+def trapezoidal_pc(xn, yn, h, func, *args):
+    yp = yn + h*func(yn, xn, *args)
     return yn + (h/2)*(func(yn, xn) + func(yp, xn + h))
 
 # Runge Kutta of order 2
-def rk2(xn, yn, h, func):
-    k = yn + (h/2)*func(yn, xn)
+def rk2(xn, yn, h, func, *args):
+    k = yn + (h/2)*func(yn, xn, *args)
     return yn + h*func(k, xn + h/2)
 
 # Runge Kutta of order 4
-def rk4(xn, yn, h, func):
-    k1 = func(yn, xn)
+def rk4(xn, yn, h, func, *args):
+    k1 = func(yn, xn, *args)
     k2 = func(yn + (h/2)*k1, xn + h/2)
     k3 = func(yn + (h/2)*k2, xn + h/2)
     k4 = func(yn + h*k3, xn + h)
