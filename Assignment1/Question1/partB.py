@@ -25,8 +25,8 @@ tf = 100
 u = [1.1, -0.1]
 
 
-# A = 0.5, alpha = 0.5
-theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.5, 0.5, 1.)
+# A = 0.5, alpha = 0.1
+theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.1, 0.5, 1.)
 plt1 = plt_creator(
     title="Damped Driven Pendulum PHSP", 
     xLabel=r'$\theta$', 
@@ -38,8 +38,8 @@ plt1.plot(theta_arr, v_arr, linewidth=1, color= blue)
 plt1.savefig("Results/partB1_PHSP.png")
 
 
-# A = 0.9, alpha = 0.5
-theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.5, 0.9, 1.)
+# A = 0.9, alpha = 0.1
+theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.1, 0.9, 1.)
 plt1 = plt_creator(
     title="Damped Driven Pendulum PHSP", 
     xLabel=r'$\theta$', 
@@ -51,8 +51,8 @@ plt1.plot(theta_arr, v_arr, linewidth=1, color= blue)
 plt1.savefig("Results/partB2_PHSP.png")
 
 
-# A = 1.07, alpha = 0.5
-theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.5, 1.07, 1.)
+# A = 1.07, alpha = 0.1
+theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.1, 1.07, 1.)
 plt1 = plt_creator(
     title="Damped Driven Pendulum PHSP", 
     xLabel=r'$\theta$', 
@@ -64,8 +64,8 @@ plt1.plot(theta_arr, v_arr, linewidth=1, color= blue)
 plt1.savefig("Results/partB3_PHSP.png")
 
 
-# A = 1.1, alpha = 0.5
-theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.5, 1.1, 1.)
+# A = 1.1, alpha = 0.1
+theta_arr, v_arr = solver(u, rk4, N, t0, tf, 0.1, 1.1, 1.)
 plt1 = plt_creator(
     title="Damped Driven Pendulum PHSP", 
     xLabel=r'$\theta$', 

@@ -30,9 +30,9 @@ tf = 100
 u1 = [1.1,-0.1]
 u2 = [1.09, -0.1]
 
-# A = 0.5, alpha = 0.5
-theta_arr_1, v_arr_1 = solver(u1, rk4, N, t0, tf, 0.5, 0.5, 1.)
-theta_arr_2, v_arr_2 = solver(u2, rk4, N, t0, tf, 0.5, 0.5, 1.)
+# A = 0.5, alpha = 0.1
+theta_arr_1, v_arr_1 = solver(u1, rk4, N, t0, tf, 0.1, 0.5, 1.)
+theta_arr_2, v_arr_2 = solver(u2, rk4, N, t0, tf, 0.1, 0.5, 1.)
 
 plt1 = plt_creator(
     title=r'Damped Driven Pendulum $\Delta\theta$ vs t', 
@@ -45,9 +45,9 @@ plt1.plot(np.linspace(t0, tf, N+1), theta_arr_1-theta_arr_2, linewidth=1, color=
 plt1.savefig("Results/partC1_Dtht.png")
 
 
-# A = 0.9, alpha = 0.5
-theta_arr_1, v_arr_1 = solver(u1, rk4, N, t0, tf, 0.5, 0.9, 1.)
-theta_arr_2, v_arr_2 = solver(u2, rk4, N, t0, tf, 0.5, 0.9, 1.)
+# A = 0.9, alpha = 0.1
+theta_arr_1, v_arr_1 = solver(u1, rk4, N, t0, tf, 0.1, 0.9, 1.)
+theta_arr_2, v_arr_2 = solver(u2, rk4, N, t0, tf, 0.1, 0.9, 1.)
 
 plt1 = plt_creator(
     title=r'Damped Driven Pendulum $\Delta\theta$ vs t', 
@@ -61,9 +61,9 @@ plt1.plot(np.linspace(t0, tf, N+1), theta_arr_1-theta_arr_2, linewidth=1, color=
 plt1.savefig("Results/partC2_Dtht.png")
 
 
-# A = 1.07, alpha = 0.5
-theta_arr_1, v_arr_1 = solver(u1, rk4, N, t0, tf, 0.5, 1.07, 1.)
-theta_arr_2, v_arr_2 = solver(u2, rk4, N, t0, tf, 0.5, 1.07, 1.)
+# A = 1.07, alpha = 0.1
+theta_arr_1, v_arr_1 = solver(u1, rk4, N, t0, tf, 0.1, 1.07, 1.)
+theta_arr_2, v_arr_2 = solver(u2, rk4, N, t0, tf, 0.1, 1.07, 1.)
 
 plt1 = plt_creator(
     title=r'Damped Driven Pendulum $\Delta\theta$ vs t', 
@@ -77,9 +77,9 @@ plt1.plot(np.linspace(t0, tf, N+1), theta_arr_1-theta_arr_2, linewidth=1, color=
 plt1.savefig("Results/partC3_Dtht.png")
 
 
-# A = 1.1, alpha = 0.5
-theta_arr_1, v_arr_1 = solver(u1, rk4, N, t0, tf, 0.5, 1.1, 1.)
-theta_arr_2, v_arr_2 = solver(u2, rk4, N, t0, tf, 0.5, 1.1, 1.)
+# A = 1.1, alpha = 0.1
+theta_arr_1, v_arr_1 = solver(u1, rk4, N, t0, tf, 0.1, 1.1, 1.)
+theta_arr_2, v_arr_2 = solver(u2, rk4, N, t0, tf, 0.1, 1.1, 1.)
 
 plt1 = plt_creator(
     title=r'Damped Driven Pendulum $\Delta\theta$ vs t', 

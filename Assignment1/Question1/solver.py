@@ -29,7 +29,3 @@ def solver(u, routine, N, t0, tf, *args, kernel=kernel):
         v_arr = np.append(v_arr, u[1])
     
     return theta_arr, v_arr
-
-    
-
-

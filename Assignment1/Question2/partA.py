@@ -22,7 +22,7 @@ def rotation_corr(omega, t):
     return omega*t
 
 # Simulation constants
-h = 0.001 # 3.6s
+h = 0.01 # 3.6s
 t0 = 0
 
 # first part
