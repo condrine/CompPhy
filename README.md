@@ -1,4 +1,4 @@
-# CompPhy
+# Description
 Assignment Codebase for Computational Physics Course at TIFR
 
 ## How to Run
