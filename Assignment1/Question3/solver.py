@@ -15,7 +15,7 @@ def kernel(u, r, E, l):
     u_dder = 2*m*(-alpha/r + sigma*r + l*(l+1)/(2*m*r*r) - E)*u[0]    # dv/dt
     return np.array([u_der, u_dder])
 
-# Solver routine
+# Integration routine
 def integrator(u, routine, N, r0, rf, nNodes, *args, kernel=kernel):
     h = (rf-r0)/N   # step size
 
@@ -74,7 +74,7 @@ def solver(u0, r0, rf, l, E1, E2, N, tol, routine, nNodes):
             E1 = E2
             E2 = Em
             u1[0] = u2[0]
-            
+
             # run with updated Energy
             u2, flag = integrator(u0, routine, N, r0, rf, nNodes, E2, l)
             while (flag == False):  # handle bad guess
