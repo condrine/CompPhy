@@ -78,8 +78,6 @@ def solver(u0, r0, rf, l, E1, E2, N, tol, routine, nNodes):
             # run with updated Energy
             u2, flag = integrator(u0, routine, N, r0, rf, nNodes, E2, l)
             while (flag == False):  # handle bad guess
-                print(4, u2[0], E2)
-                input()
                 mult = pow(2, nNodes - u2[0]) if nNodes > u2[0] else pow(1.5, nNodes - u2[0])
                 E2 = E2*mult
                 u2, flag = integrator(u0, routine, N, r0, rf, nNodes, E2, l)

@@ -13,12 +13,12 @@ R = 6371 #km
 
 # Derivative kernel
 def kernel(u, t):
-    phi_der = u[1]
-    theta_der = u[3]                # dtheta/dt
-    r_der = u[5]                    # dr/dt
-    phi_dder = -2*u[5]*u[3]/u[4] - 2*u[3]*u[1]*cos(u[2])/sin(u[2])
-    theta_dder = sin(u[2])*cos(u[2])*u[1]*u[1] - 2*u[5]*u[3]/u[4]  # d^2theta/dt^2
-    r_dder =  -g*R*R/(u[4]*u[4]) + u[4]*u[3]*u[3] + u[4]*sin(u[2])*sin(u[2])*u[1]*u[1]   # d^2r/dt^2
+    phi_der = u[1]      # dphi/dt
+    theta_der = u[3]    # dtheta/dt
+    r_der = u[5]        # dr/dt
+    phi_dder = -2*u[5]*u[3]/u[4] - 2*u[3]*u[1]*cos(u[2])/sin(u[2])                      # d^2phi/dt^2
+    theta_dder = sin(u[2])*cos(u[2])*u[1]*u[1] - 2*u[5]*u[3]/u[4]                       # d^2theta/dt^2
+    r_dder =  -g*R*R/(u[4]*u[4]) + u[4]*u[3]*u[3] + u[4]*sin(u[2])*sin(u[2])*u[1]*u[1]  # d^2r/dt^2
     return np.array([phi_der, phi_dder, theta_der, theta_dder, r_der, r_dder])
 
 # return radius of disc of the meridional plane
