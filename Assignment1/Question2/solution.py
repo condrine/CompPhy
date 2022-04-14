@@ -1,6 +1,6 @@
 '''
-This script provides the solution for 
-part (A) of Question 2 of Assignment 1
+This script provides the solution 
+for Question 2 of Assignment 1
 '''
 
 import sys
