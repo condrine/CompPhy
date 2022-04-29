@@ -9,6 +9,7 @@ import os
 
 # Python imports
 import numpy as np
+from scipy.linalg import eigh
 
 # Add the Utils Module
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -60,7 +61,16 @@ def get_mean_var3(Ct_arr):
 
     return Ct_avg, Ct_var
     
+# Get Covariance for (t1, t2)
+def get_cov(Ct1_arr, Ct2_arr):
 
+    # calculate average
+    Ct1_avg = sum([Ct for Ct in Ct1_arr])/len(Ct1_arr)
+    Ct2_avg = sum([Ct for Ct in Ct2_arr])/len(Ct2_arr)
+
+    # calculate covariance
+    cov = sum([(Ct1_arr[i] - Ct1_avg)*(Ct2_arr[i] - Ct2_avg) for i in range(len(Ct2_arr))])/len(Ct2_arr)
+    return cov
 
 # initialise data dictionary
 data_dict = {}
@@ -92,9 +102,9 @@ for t in data_dict:
     t_arr.append(t)
 
 plt = plt_creator(
-    title="Ct_avg vs t", 
+    title=r'$\overline{C_m}$ vs t', 
     xLabel="t", 
-    yLabel="Ct_avg",
+    yLabel=r'$\overline{C_m}(t)$',
     xMargin=0.02, 
     yMargin=0.02
 )
@@ -102,3 +112,6 @@ plt.errorbar(t_arr, Ct_avg_arr, yerr=Ct_err, ecolor='red')
 plt.savefig("Results/Cbarvst.png")   
 
 # Part B
+mat = [[get_cov(data_dict[t1], data_dict[t2]) for t2 in range(33,63)] for t1 in range(33,63)]
+eigs = eigh(mat, eigvals_only=True)
+print("Eigenvalues of the required covariance matrix are: ", eigs)
