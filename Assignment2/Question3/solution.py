@@ -93,7 +93,6 @@ for t in data_dict:
 
 plt = plt_creator(title="Ct_avg vs t", xLabel="t", yLabel="Ct_avg")
 plt.errorbar(t_arr, Ct_avg_arr, yerr=Ct_err, ecolor='red')
-plt.yscale("log")
 plt.show()   
 
 # Part B
