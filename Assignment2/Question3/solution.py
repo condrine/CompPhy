@@ -3,12 +3,11 @@ This script provides the solution
 for Question 3 of Assignment 2
 '''
 
-from math import sqrt
 import sys
 import os
 
 # Python imports
-import numpy as np
+from math import sqrt
 from scipy.linalg import eigh
 
 # Add the Utils Module
@@ -18,6 +17,7 @@ sys.path.append(dir_path.replace("Assignment2/Question3", ""))
 # Utils module imports
 from Utils.colors import blue, red
 from Utils.plt_creator import plt_creator
+
 
 # First Method to get Mean and Variance (double loop, low round off)
 def get_mean_var1(Ct_arr):
@@ -31,6 +31,7 @@ def get_mean_var1(Ct_arr):
     Ct_var = Ct_var/len(Ct_arr)
 
     return Ct_avg, Ct_var
+
 
 # Second Method to get Mean and Variance (single loop, large round off)
 def get_mean_var2(Ct_arr):
@@ -46,6 +47,7 @@ def get_mean_var2(Ct_arr):
 
     return Ct_avg, Ct_var
 
+
 # Third Method to get Mean and Variance (single loop, low round off)
 def get_mean_var3(Ct_arr):
     M = 0
@@ -60,17 +62,19 @@ def get_mean_var3(Ct_arr):
     Ct_var = S/(len(Ct_arr))
 
     return Ct_avg, Ct_var
-    
-# Get Covariance for (t1, t2)
-def get_cov(Ct1_arr, Ct2_arr):
+
+
+# Get Correlation coefficient for (t1, t2)
+def get_corr(Ct1_arr, Ct2_arr):
 
     # calculate average
-    Ct1_avg = sum([Ct for Ct in Ct1_arr])/len(Ct1_arr)
-    Ct2_avg = sum([Ct for Ct in Ct2_arr])/len(Ct2_arr)
+    Ct1_avg, Ct1_var = get_mean_var3(Ct1_arr)
+    Ct2_avg, Ct2_var = get_mean_var3(Ct2_arr)
 
     # calculate covariance
-    cov = sum([(Ct1_arr[i] - Ct1_avg)*(Ct2_arr[i] - Ct2_avg) for i in range(len(Ct2_arr))])/len(Ct2_arr)
+    cov = sum([(Ct1_arr[i] - Ct1_avg)*(Ct2_arr[i] - Ct2_avg) for i in range(len(Ct2_arr))])/(len(Ct2_arr)*sqrt(Ct1_var*Ct2_var))
     return cov
+
 
 # initialise data dictionary
 data_dict = {}
@@ -88,10 +92,15 @@ with open(file) as f:
         data_dict[int(t)].append(float(Ct))
         line = f.readline()
 
+
 # Part A
+
+# initialise plotting matrices
 Ct_avg_arr = []
 Ct_err_arr = []
 t_arr = []
+
+# iterate over the data
 for t in data_dict:
     Ct_arr = data_dict[t]
     Ct_avg, Ct_var = get_mean_var3(Ct_arr)
@@ -101,6 +110,7 @@ for t in data_dict:
     Ct_err_arr.append(Ct_err)
     t_arr.append(t)
 
+# plot the error graph
 plt = plt_creator(
     title=r'$\overline{C_m}$ vs t', 
     xLabel="t", 
@@ -111,7 +121,12 @@ plt = plt_creator(
 plt.errorbar(t_arr, Ct_avg_arr, yerr=Ct_err, ecolor='red')
 plt.savefig("Results/Cbarvst.png")   
 
+
 # Part B
-mat = [[get_cov(data_dict[t1], data_dict[t2]) for t2 in range(33,63)] for t1 in range(33,63)]
+
+# get the correlation matrix
+mat = [[get_corr(data_dict[t1], data_dict[t2]) for t2 in range(33,63)] for t1 in range(33,63)]
+
+# calculate and print eigenvalues
 eigs = eigh(mat, eigvals_only=True)
 print("Eigenvalues of the required covariance matrix are: ", eigs)
