@@ -1,12 +1,11 @@
 '''
-This script provides the solution 
+This script provides the solver script 
 for Question 2 of Assignment 2
 '''
 
 # Python imports
 from scipy.sparse import coo_matrix, linalg
 import numpy as np
-from scipy.linalg import eigh_tridiagonal as eigtr
 
 # Potential term for Shrodinger Eqn.
 def V(x, k, lmbda):
