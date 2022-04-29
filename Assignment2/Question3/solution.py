@@ -91,8 +91,14 @@ for t in data_dict:
     Ct_err_arr.append(Ct_err)
     t_arr.append(t)
 
-plt = plt_creator(title="Ct_avg vs t", xLabel="t", yLabel="Ct_avg")
+plt = plt_creator(
+    title="Ct_avg vs t", 
+    xLabel="t", 
+    yLabel="Ct_avg",
+    xMargin=0.02, 
+    yMargin=0.02
+)
 plt.errorbar(t_arr, Ct_avg_arr, yerr=Ct_err, ecolor='red')
-plt.show()   
+plt.savefig("Results/Cbarvst.png")   
 
 # Part B
