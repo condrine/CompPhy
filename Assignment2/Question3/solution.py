@@ -72,8 +72,8 @@ def get_corr(Ct1_arr, Ct2_arr):
     Ct2_avg, Ct2_var = get_mean_var3(Ct2_arr)
 
     # calculate covariance
-    cov = sum([(Ct1_arr[i] - Ct1_avg)*(Ct2_arr[i] - Ct2_avg) for i in range(len(Ct2_arr))])/(len(Ct2_arr)*sqrt(Ct1_var*Ct2_var))
-    return cov
+    corr = sum([(Ct1_arr[i] - Ct1_avg)*(Ct2_arr[i] - Ct2_avg) for i in range(len(Ct2_arr))])/(len(Ct2_arr)*sqrt(Ct1_var*Ct2_var))
+    return corr
 
 
 # initialise data dictionary
