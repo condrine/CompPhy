@@ -4,11 +4,11 @@ for Question 2 of Assignment 2
 '''
 
 import sys
-import os
+from pathlib import Path
 
 # Add the Utils Module
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path.replace("Assignment2/Question2", ""))
+p = Path(__file__).parents[2]
+sys.path.append(str(p))
 
 # Python imports
 import numpy as np

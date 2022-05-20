@@ -4,18 +4,17 @@ for Question 3 of Assignment 2
 '''
 
 import sys
-import os
+from pathlib import Path
 
 # Python imports
 from math import sqrt
 from scipy.linalg import eigh
 
 # Add the Utils Module
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path.replace("Assignment2/Question3", ""))
+p = Path(__file__).parents[2]
+sys.path.append(str(p))
 
 # Utils module imports
-from Utils.colors import blue, red
 from Utils.plt_creator import plt_creator
 
 

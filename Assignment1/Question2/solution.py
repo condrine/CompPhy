@@ -4,19 +4,17 @@ for Question 2 of Assignment 1
 '''
 
 import sys
-import os
+from pathlib import Path
 
 # Python imports
 from math import pi
 
 # Add the Utils Module
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path.replace("Assignment1/Question2", ""))
+p = Path(__file__).parents[2]
+sys.path.append(str(p))
 
 # Utils module imports
 from Utils.int_routines import rk4
-from Utils.colors import blue
-from Utils.plt_creator import plt_creator
 
 # Local imorts
 from solver import solver

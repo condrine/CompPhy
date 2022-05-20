@@ -4,15 +4,15 @@ for Question 1 of Assignment 2
 '''
 
 import sys
-import os
+from pathlib import Path
 
 # Python imports
 import numpy as np
 from math import sqrt, pi
 
 # Add the Utils Module
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path.replace("Assignment2/Question1", ""))
+p = Path(__file__).parents[2]
+sys.path.append(str(p))
 
 # Utils module imports
 from Utils.int_routines import rk4

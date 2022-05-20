@@ -4,11 +4,11 @@ for of Question 3 of Assignment 1
 '''
 
 import sys
-import os
+from pathlib import Path
 
 # Add the Utils Module
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path.replace("Assignment1/Question3", ""))
+p = Path(__file__).parents[2]
+sys.path.append(str(p))
 
 # Utils module imports
 from Utils.int_routines import rk4
