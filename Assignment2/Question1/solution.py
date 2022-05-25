@@ -11,7 +11,7 @@ import numpy as np
 from math import sqrt, pi
 
 # Add the Utils Module
-p = Path(__file__).parents[2]
+p = Path(__file__).resolve().parents[2]
 sys.path.append(str(p))
 
 # Utils module imports
