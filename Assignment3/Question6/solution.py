@@ -15,6 +15,7 @@ p = Path(__file__).parents[2]
 sys.path.append(str(p))
 
 # Utils module imports
+from Utils.mc_routines import AcptRejSample
 from Utils.colors import red
 from Utils.plt_creator import plt_creator
 
@@ -23,20 +24,10 @@ from Utils.plt_creator import plt_creator
 def dist(x):
     return sqrt(2/pi)*np.exp(-0.5*x**2)
 
-# Initialise RNG
-rng = np.random.default_rng()
-
-# Rejection sampling
-def getNextSample(range, dist=dist):
-    x = rng.uniform(low=range[0], high=range[1])
-    while (dist(x) < rng.uniform()):
-        x = rng.uniform(low=range[0], high=range[1])
-    return x
-
 # Get samples
 N_samples = 10000
 Range = (0,4)
-Samples = [getNextSample(Range) for i in range(N_samples)]
+Samples = [AcptRejSample(Range, 1.0, dist) for i in range(N_samples)]
 
 # Initialise plot
 plt = plt_creator(
