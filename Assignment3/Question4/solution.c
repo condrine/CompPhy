@@ -7,40 +7,48 @@ float rng() {
     return (float)rand()/(float)RAND_MAX;
 }
 
-// Gaussian (Box-Muller)
-float* Gaussian(float sigma, float mu, int N) {
+// Exponential sampler (Transform)
+float* Expo_Sampler(float lambda, int N) {
 
     // initialise sample array
     float *smpl;
     smpl = calloc(N, sizeof(float));
 
-    // fill sampke
-    for (int i=0; i < N/2 + 1; i++) {
+    // fill sample
+    for (int i=0; i < N ; i++) {
 
-        // Get random numbers
+        // Get exponential samples
         float r1 = rng();
-        float r2 = rng();
-
-        // Get gaussian samples
-        float u1 = sqrt(-2*log(r1))*cos(2*M_PI*r2);
-        float u2 = sqrt(-2*log(r2))*sin(2*M_PI*r1);
-        if (2*i < N) *(smpl + 2*i) = u1;
-        if (2*i + 1 < N)*(smpl + 2*i + 1) = u2;
+        *(smpl + i) = (-1./lambda)*log(1-r1);
     }
 
     return smpl;
 }
 
+// Exact Exponential function
+float Exponential(float lambda, float x) {
+    return exp(-lambda*x)*lambda;
+}
+
 int main() {
 
     // Get Samples  
-    int N = 1000;  
-    float* Samples = Gaussian(0., 1., N);
+    int N = 10000;  
+    float* Samples = Expo_Sampler(2., N);
 
-    // Write to file
+    // Write samples to file
     FILE *fptr;
-    fptr = fopen("Results/gauss.dat","w");
-    for (int i = 0; i < N; i++ )
-   	  fprintf(fptr, "%f\n", *(Samples+i) );
+    fptr = fopen("Results/expo_sample.dat","w");
+    for (int i = 0; i < N; i++ ) fprintf(fptr, "%f\n", *(Samples+i));
+    fclose(fptr);
+
+    // Free memory
+    free(Samples);
+
+    // Write exact func to file
+    fptr = fopen("Results/expo_exact.dat","w");
+    for (int i = 0; i < 30; i++ ) fprintf(fptr, "%f %f\n", i*4./30., Exponential(2., i*4./30.));
+    fclose(fptr);
 }
+
 
