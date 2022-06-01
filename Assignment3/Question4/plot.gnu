@@ -1,6 +1,6 @@
 set xlabel "x"
 set ylabel "Prob. Density"
-set title "Gaussian Distribution"
+set title "Exponential Distribution"
 
 # Gnuplot Script For Histogram
 stats "Results/expo_sample.dat" using 1 name "A"
@@ -14,5 +14,10 @@ hist(x,width) = width/2.0 + width*floor(x/width)
 
 set size sq
 set style fill solid
+
+set terminal png;
+set output "Results/expo.png";
+
 plot 'Results/expo_sample.dat' u (hist($1,width)):(1.0/(width*10000)) smooth freq w boxes lc rgb "blue" notitle,\
-"Results/expo_exact.dat" u 1:2 w lp lc rgb "red"
+"Results/expo_exact.dat" u 1:2 w l lc rgb "red"
+

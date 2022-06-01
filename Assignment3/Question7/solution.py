@@ -25,7 +25,7 @@ def heuristics(Prob):
     elif (Prob < 10 or Prob > 90):
         return "Almost Suspect"
     else:
-        return "Suspect"
+        return "Sufficiently Random"
 
 # Random Samples
 Samp1 = np.asarray([4, 10, 10, 13, 20, 18, 18, 11, 13, 14, 13])

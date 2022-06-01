@@ -1,3 +1,8 @@
+/*
+This script provides the solution
+for Question 4 of Assignment 3
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

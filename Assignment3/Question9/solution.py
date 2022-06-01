@@ -3,8 +3,10 @@ This script provides the solution
 for Question 9 of Assignment 3
 '''
 
+from cProfile import label
 import sys
 from pathlib import Path
+from matplotlib.pyplot import legend
 
 # Python imports
 import numpy as np
@@ -21,7 +23,6 @@ from Utils.plt_creator import plt_creator
 # proposal pdf (walker)
 def proposal(theta):
     theta_p = rng.normal(loc = theta, scale=3)
-    # theta_p = rng.uniform(high=10., low=0., size=len(theta))
     return theta_p
 
 # target distribution
@@ -59,8 +60,9 @@ plt = plt_creator(
     yMargin=0.02
 )
 
-plt.scatter(bad_steps, [A[0] for A in bad_points], color=magenta, s=10)
-plt.plot(good_steps, [A[0] for A in sample], color=blue, lw=0.5)
+plt.scatter(bad_steps, [A[0] for A in bad_points], color=magenta, s=10, label="Reject")
+plt.plot(good_steps, [A[0] for A in sample], color=blue, lw=0.5, label="Chain")
+plt.legend(loc="upper right")
 plt.savefig("Results/MC_plot.png")
 
 # Initialise plot

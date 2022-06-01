@@ -3,10 +3,8 @@ This script provides the solution
 for Question 10 of Assignment 3
 '''
 
-from cProfile import label
 import sys
 from pathlib import Path
-from turtle import color
 
 # Python imports
 import numpy as np
@@ -22,7 +20,7 @@ sys.path.append(str(p))
 # Utils module imports
 from Utils.plt_creator import plt_creator
 from Utils.mc_routines import log_likelihod, log_probability
-from Utils.colors import blue, green, red, black, magenta
+from Utils.colors import blue, black, magenta
 
 
 # Read file
@@ -142,6 +140,7 @@ for i in range (200):
 # Plot best fit model
 plt.plot(data[0][order], objective([c_bf, b_bf, a_bf], data[0])[order], color=blue, label="best fit")
 
+# Save plot
 plt.legend(loc ="lower right")
 plt.savefig("Results/datafit.png")
 
