@@ -15,12 +15,13 @@ sys.path.append(str(p))
 
 # Utils module imports
 from Utils.mc_routines import metropolis, rng
-from Utils.colors import red
+from Utils.colors import red, blue, magenta
 from Utils.plt_creator import plt_creator
 
 # proposal pdf (walker)
 def proposal(theta):
-    theta_p = rng.normal(loc = theta, scale=0.2)
+    theta_p = rng.normal(loc = theta, scale=3)
+    # theta_p = rng.uniform(high=10., low=0., size=len(theta))
     return theta_p
 
 # target distribution
@@ -30,16 +31,37 @@ def target(theta):
 
 # params
 ndim = 1
-npoints = 100000
-theta_i = np.ones(ndim)*3.1
+npoints = 20000
+theta_i = np.ones(ndim)*5.0
 
 # sample list
 sample = [theta_i]
 
+# Markov chain vars
+bad_steps, good_steps = [], [0]
+bad_points = []
+
 # sampler
 for i in range(npoints):
-    sample.append(metropolis(sample[-1], proposal, target, ndim))
-sample = sample[1:]
+    theta, prop_arr = metropolis(sample[-1], proposal, target, ndim)
+    sample.append(theta)
+    bad_points += prop_arr[:-1]
+    bad_steps += list(range(good_steps[-1] + 1, len(prop_arr) + good_steps[-1]))
+    good_steps.append(good_steps[-1] + len(prop_arr)) 
+
+
+# Plot Markov chain
+plt = plt_creator(
+    title="Markov Chain", 
+    xLabel="steps", 
+    yLabel=r'$\theta$',
+    xMargin=0.02, 
+    yMargin=0.02
+)
+
+plt.scatter(bad_steps, [A[0] for A in bad_points], color=magenta, s=10)
+plt.plot(good_steps, [A[0] for A in sample], color=blue, lw=0.5)
+plt.savefig("Results/MC_plot.png")
 
 # Initialise plot
 plt = plt_creator(
